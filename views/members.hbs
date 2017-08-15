@@ -1,0 +1,10 @@
+<h1>{{title}}</h1>
+<h3>{{subtitle}}</h3>
+{{#each members}}
+    {{#unless firstname.GUEST}}
+    <a class="member-list" href="/members/{{memid}}">{{firstname}} {{surname}}</a> 
+    {{/unless}}
+{{/each}}
+
+
+

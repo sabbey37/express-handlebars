@@ -1,0 +1,11 @@
+{{#with member}}
+    <form method="post" enctype="multipart/form-data">
+        <input type="text" name="firstname" value='{{firstname}}'>
+        <input type="text" name="surname" value='{{surname}}'>
+        <input type="text" name="address" value='{{address}}'>
+        <input type="text" name="zipcode" value='{{zipcode}}'>
+        <input type="text" name="telephone" value='{{telephone}}'>
+        <input type="file" name="profile_picture" value='{{picture}}'>
+        <input type="submit">
+    </form>
+{{/with}}
