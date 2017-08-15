@@ -30,9 +30,7 @@ router.get('/:id', function(req, res, next) {
             picture = new Buffer.from(picture);
             picture = picture.toString('base64');
             picture = "data:image/png;base64," + picture;
-            console.log(picture);
-            // gm(picture, `${result.memid}.png`)
-            //     .write(`../public/images/temp/${result.memid}.png`, ())
+    
             res.render('member', { 
                 member: result,
                 picture: picture
@@ -63,13 +61,17 @@ router.get('/:id/edit', function(req, res, next) {
 
 
 router.post('/:id/edit', function(req, res, next) {
-    console.log(req.files.profile_picture);
-
     if(!req.files) {
         return res.status(400).send('No files were uploaded.');
     }
 
-    let picture = req.files.profile_picture.data;  
+    let picture = req.files.profile_picture.data;
+    picture = gm(picture, `${res.memid}.png`).resize(25, 25).toBuffer(`PNG`, (err, buffer) => {
+            if(err) return handle(err);
+            return buffer;
+        })
+    
+    picture = picture.sourceBuffer;  
     picture = picture.toJSON(picture);
     picture = JSON.stringify(picture);
     // var ps = db.prepareStatement("update cd.members set picture = (?) where memid= (?)");
