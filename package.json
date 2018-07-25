@@ -19,6 +19,7 @@
     "pg-promise": "^6.3.8",
     "request-promise": "^4.2.1",
     "serve-favicon": "~2.4.2",
+    "tough-cookie": "^2.4.3",
     "ws": "^3.1.0"
   },
   "devDependencies": {

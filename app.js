@@ -8,8 +8,14 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var members = require('./routes/members');
 var facilities = require('./routes/facilities');
-
 var app = express();
+
+class User {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

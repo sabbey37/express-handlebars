@@ -74,20 +74,6 @@ router.post('/:id/edit', function(req, res, next) {
     picture = picture.sourceBuffer;  
     picture = picture.toJSON(picture);
     picture = JSON.stringify(picture);
-    // var ps = db.prepareStatement("update cd.members set picture = (?) where memid= (?)");
-    
-    // var fileStream = fs.createReadStream();
-    // var ps = db.prepareStatement("update cd.members set picture = (?) where memid= (?)");
-    // ps.setString(file.getName(), req.params.id);
-    // ps.setBinaryStream(2, fis, file.length());
-    // ps.executeUpdate();
-    // ps.close();
-    // fis.close();
-    // gm(req.body.picture)
-    //     .resize(100, 100)
-    //     .stream((err, stdut, stderr) => {
-    //         var writeStream = fs.createWriteStream
-    //     })
 
     db.result(`
         update cd.members
@@ -103,14 +89,14 @@ router.post('/:id/edit', function(req, res, next) {
         .then((result) => {
             db.one(`
         select * from cd.members where memid=${req.params.id};
-      `)
+        `)
+        })
         .then((result) => {
             res.render('member-form', { 
                 member: result
             });
         })
       
-        })
       .catch((err) => {
           res.render('error', {
             message: err.message
